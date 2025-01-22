@@ -1,0 +1,81 @@
+Git provides two primary ways to undo changes: reverting and resetting, each with different purposes and behaviors. Here's an explanation of both:
+
+1. Git Revert
+Purpose: Used to undo a specific commit by creating a new commit that reverses the changes introduced by the original commit.
+Key Characteristics:
+Does not alter the commit history. Instead, it adds a new commit that negates the effects of a previous one.
+Safe for use in shared repositories since it maintains the full history.
+When to Use:
+When you need to undo changes already pushed to a shared branch (e.g., main or master).
+When you want to preserve a clear history of all changes, including corrections.
+Example:
+Revert a specific commit:
+
+git revert <commit-hash>
+
+
+Revert multiple commits interactively:
+
+git revert -n <commit-hash1> <commit-hash2>
+git commit
+
+
+2. Git Reset
+Purpose: Moves the branch pointer to a different commit, optionally modifying the working directory and staging area.
+Key Characteristics:
+Alters commit history (potentially destructive if used improperly).
+Three modes: --soft, --mixed, and --hard.
+Reset Modes:
+Soft Reset:
+
+Moves the branch pointer but keeps changes in the staging area.
+
+git reset --soft <commit-hash>
+
+
+Use case: Reorganizing commits before creating a new commit.
+
+Mixed Reset (Default):
+
+Moves the branch pointer and unstages changes, leaving them in the working directory.
+
+
+git reset --mixed <commit-hash>
+
+
+
+Use case: Undoing commits but keeping changes for editing or re-staging.
+
+Hard Reset:
+
+Moves the branch pointer and discards changes in both the working directory and the staging area.
+
+
+git reset --hard <commit-hash>
+
+
+
+Use case: Completely discarding changes and resetting the repository to a previous state. Be cautious—data loss is possible.
+
+
+
+Comparison of Git Revert and Git Reset
+Feature	Git Revert	Git Reset
+History Alteration	Does not alter history	Alters history
+New Commit	Creates a new commit	Does not create a new commit
+Impact	Safe for shared repositories	Risky in shared repositories
+Scope	Specific commits to reverse	Entire commit history or specific commits
+Use Case	Undo changes while preserving history	Undo changes, reorganize commits, or clean
+
+
+
+Tips for Choosing:
+Use revert for shared branches to maintain a transparent history.
+Use reset cautiously, especially on private branches, for tasks like rewriting commit history or cleaning up changes.
+
+
+
+
+
+
+
