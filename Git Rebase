@@ -1,0 +1,125 @@
+Git rebasing is a powerful feature that lets you move or combine commits from one branch to another. It allows you to maintain a clean, linear project history by replaying commits on top of a target branch. Here's a detailed explanation with an example:
+
+What is Git Rebasing?
+Rebasing transfers the commits from one branch to another, applying them in order as if they were made on top of the target branch. It effectively rewrites history by creating new commits, so the resulting commit tree is linear.
+
+Why Use Rebasing?
+To maintain a clean and linear commit history.
+To avoid unnecessary merge commits.
+To simplify review and debugging by making the history easier to understand.
+
+
+Example Scenario
+Imagine the following Git history:
+
+
+main: A --- B --- C
+feature:       D --- E
+
+
+main branch contains commits A, B, and C.
+feature branch is branched off main at B and has commits D and E.
+Now, new changes (C) have been added to main, and you want to incorporate them into your feature branch.
+
+Rebasing feature onto main
+Start Rebasing: Run the command while on the feature branch:
+
+git checkout feature
+git rebase main
+
+
+What Happens Internally:
+
+Git takes commits D and E from feature and replays them on top of main.
+It temporarily detaches feature from its base (B) and attaches it to the latest commit of main (C).
+Resulting History: After rebasing, the history looks like this:
+
+
+main:    A --- B --- C
+feature:                D' --- E'
+
+
+
+
+
+Commits D and E are now applied on top of C, appearing as new commits (D' and E').
+
+
+
+Key Points
+Rewriting History: Rebasing rewrites commit history, so it's best avoided on shared branches to prevent conflicts with other collaborators.
+
+Conflict Resolution: If there are conflicts during rebasing, Git pauses and lets you resolve them:
+
+Resolve conflicts in the files.
+Mark the files as resolved:
+
+
+
+git add <resolved-files>
+
+
+
+Continue the rebase process
+
+
+git rebase --continue
+
+
+
+
+Force Push: After rebasing, if the branch has been shared with others, you need to force push
+
+
+git push --force
+
+
+
+Difference Between Rebase and Merge
+Feature	Rebase	Merge
+History	Linear	Preserves all branches
+Conflict Resolution	During the rebase process	During the merge commit
+Use Case	Clean history, private branches	Combine branches, public history
+
+
+
+============================================
+
+
+Interactive rebasing in Git is a powerful feature that allows you to modify commits in a branch interactively. This includes reordering, editing, combining, or even removing commits, enabling you to craft a clean and meaningful commit history.
+
+
+
+
+
+When to Use Interactive Rebasing?
+To clean up commit history before sharing your work.
+To fix mistakes in earlier commits.
+To combine small commits into a single, cohesive commit (squashing).
+To remove unnecessary or experimental commits.
+
+
+
+How to Perform Interactive Rebasing
+Start the Interactive Rebase:
+
+
+
+git rebase -i <base-branch-or-commit>
+
+
+
+
+Example: If you're on a feature branch and want to rebase its last 3 commits
+
+
+git rebase -i HEAD~3
+
+
+
+
+
+
+
+
+
