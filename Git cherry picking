@@ -1,0 +1,103 @@
+Cherry-picking in Git is a feature that allows you to apply a specific commit from one branch to another without merging the entire branch. This is useful when you want to selectively incorporate changes into a different branch.
+
+
+When to Use Cherry-Picking?
+Porting a specific fix: Apply a bug fix from one branch to another without merging all the changes.
+Selective inclusion: Add specific features or changes from one branch to another.
+Backporting changes: Apply changes from the main branch to an older release branch.
+
+
+How to Cherry-Pick a Commit?
+Find the Commit You Want to Cherry-Pick: Use git log to find the commit hash (SHA-1):
+
+git log
+
+
+Cherry-Pick the Commit: Switch to the branch where you want to apply the commit:
+
+
+git checkout main
+
+
+
+
+Then, cherry-pick the commit:
+
+
+
+git cherry-pick a1b2c3d4e5f6g7h8i9
+
+
+
+Resolve Conflicts (if any): If the commit causes conflicts, Git pauses the cherry-pick and notifies you. To resolve:
+
+Edit the conflicting files.
+Mark them as resolved:
+
+
+
+
+git add <file>
+
+
+
+Continue the cherry-pick
+
+
+git cherry-pick --continue
+
+
+
+
+Push the Changes: After cherry-picking, commit the changes and push them:
+
+
+git push
+
+
+Example Scenario
+Initial Setup:
+Suppose you have two branches:
+
+main branch:
+
+
+A --- B --- C
+
+
+feature branch
+
+A --- B --- D --- E
+
+
+
+Cherry-Picking Commit D to main:
+Find the commit hash for D (e.g., d4e5f6).
+Run:
+
+
+git checkout main
+git cherry-pick d4e5f6
+
+
+
+Resulting history:
+
+main:    A --- B --- C --- D'
+feature: A --- B --- D --- E
+
+
+
+Note: The commit D' is a new commit with the same changes as D, but it has a different hash because it was applied to a different base.
+
+
+
+
+
+Cherry-Picking vs. Merging
+Aspect	Cherry-Picking	Merging
+Scope	Applies specific commits only	Combines entire branch histories
+Commit History	Keeps individual commits	Includes all commits in the branch
+Use Case	Selective inclusion of changes	Full branch integration
+
+
