@@ -1,0 +1,17 @@
+To clone the repository install git and configure the user details
+
+To verify the installation :- git --version
+
+To Configure git user details :
+     git config --global user.name "Your Name"
+     git config --global user.email "your-email@example.com"
+
+To initialize git :- git init
+
+To Clone the repository:- git clone https://github.com/sugandha0554/Git_GitHub.git
+
+Change directory to Repository name :- cd Git_GitHub
+
+Move file to stagging area :- git add .
+
+Move file to commit :- git commit -m "Clone repository file created"
