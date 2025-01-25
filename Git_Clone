@@ -1,0 +1,24 @@
+To clone the repository in Remote :- 
+     Go to the repository from where we need to clone -> Click Fork -> Create Fork
+     (Git_GitHub repository is cloned in remote repository)
+
+
+To Clone the repository Locally :-
+     Go to terminal or Git bash -> configure the git details
+     To Configure git user details :
+        git config --global user.name "Your Name"
+        git config --global user.email "your-email@example.com"
+     Initialize git :- git init
+     Copy the Git_GitHub repository URL from the remote cloned repository
+     Clone the repository:- git clone <repository_URL>
+
+
+Change directory to Repository name :- cd Git_GitHub
+
+Move file to stagging area :- git add .
+
+Move file to commit :- git commit -m "Clone repository file created"
+
+git status
+
+git push
